@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movies</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="row">
+          <nav class="navbar-nav navbar-left">
+            <p class="text-white">Movies</p>
+          </nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+            <li>
+              <% link_to root_path do %>
+              <p><span class="glyphicon glyphicon-book books" aria-hidden="true"> トップ</span></p>
+              <% end %>
+            </li>
+            <li>
+              <% link_to homes_about_path do %>
+              <p><span class="glyphicon glyphicon-link" aria-hidden="true"></span> アバウト</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to user_path(current_user) do %>
+              <p><span class="glyphicon glyphicon-home" aria-hidden="true"></span>マイページ</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              <p><span class="glyphicon glyphicon-log-out logout" aria-hidden="true"></span> ログアウト</p>
+              <% end %>
+            </li>
+            <% else %>
+            <li>
+              <%= link_to root_path do %>
+              <p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> トップ</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to homes_about_path do %>
+              <p><span class="glyphicon glyphicon-link" aria-hidden="true"></span> アバウト</p>
+              <% end %>
+            </li>
+            <li>
+              <%=link_to new_user_registration_path do %>
+              <p><span class="glyphicon glyphicon-edit sign_up" aria-hidden="true"></span> サインアップ</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_session_path do %>
+              <p><span class="glyphicon glyphicon-log-in sign_in" aria-hidden="true"> ログイン</span></p>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+<div>
+  <div>
+    ジャンル一覧
+  </div>
+  <table class="table">
+    <tbody>
+      <% @movies.each do |movie| %>
+      <tr><%= movie.title %></tr>
+      <tr><%= movie.body %></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
