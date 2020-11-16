@@ -1,13 +1,16 @@
-<div>
+<body>
   <div>
     ジャンル一覧
   </div>
+  <%= link_to "一覧へ", movies_path %>
   <table class="table">
     <tbody>
       <% @movies.each do |movie| %>
-      <tr><%= movie.title %></tr>
+      <tr>
+        <%= link_to movie.title, movie_path(movie) %>
+      </tr>
       <tr><%= movie.body %></tr>
       <% end %>
     </tbody>
   </table>
-</div>
+</body>

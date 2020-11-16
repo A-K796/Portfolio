@@ -19,9 +19,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
             <li>
-              <% link_to root_path do %>
-              <p><span class="glyphicon glyphicon-book books" aria-hidden="true"> トップ</span></p>
-              <% end %>
+              <% link_to "トップ", root_path %>
             </li>
             <li>
               <% link_to homes_about_path do %>

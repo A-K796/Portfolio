@@ -5,6 +5,8 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @comments = @movie.comments
+    @comment = Comment.new
   end
 
   def create
@@ -28,5 +30,4 @@ class MoviesController < ApplicationController
     params[:movie][:user_id] = current_user.id
     params.require(:movie).permit(:title, :body, :user_id, :genre_id, :image)
   end
-
 end

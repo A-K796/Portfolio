@@ -1,5 +1,29 @@
 <body>
-  <h1>詳細</h1>
-  <%= @movie.title %>
-  <%= @movie.body %>
+<!--映画情報-->
+  <div>
+    <h1>詳細</h1>
+    映画画像
+    <%= @movie.title %>
+    <%= @movie.body %>
+  </div>
+
+  <div>
+    <%= form_with model:[@movie, @comment], local:true do |f| %>
+    <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+    <% end %>
+  </div>
+
+<!--コメント一覧-->
+  <div>
+    <h1>コメント一覧</h1>
+    <table>
+      <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.user.name %></td>
+        <td><%= comment.body %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
 </body>
