@@ -6,7 +6,7 @@
       <tr>
         <td>
           <%= link_to movie_path(movie.id) do %>
-          映画画像
+          <%= attachment_image_tag movie, :image, :fill, 60, 60, fallback: "no_image.jpg" %>
           <%= movie.title %>
           <%end%>
         </td>

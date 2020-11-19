@@ -2,7 +2,7 @@
 <!--映画情報-->
   <div>
     <h1>詳細</h1>
-    映画画像
+    <%= attachment_image_tag @movie, :image, :fill, 60, 60, fallback: "no_image.jpg" %>
     <%= @movie.title %>
     <%= @movie.body %>
   </div>

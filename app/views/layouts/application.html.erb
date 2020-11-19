@@ -19,10 +19,10 @@
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
             <li>
-              <% link_to "トップ", root_path %>
+              <%= link_to "トップ", root_path %>
             </li>
             <li>
-              <% link_to homes_about_path do %>
+              <%= link_to homes_about_path do %>
               <p><span class="glyphicon glyphicon-link" aria-hidden="true"></span> アバウト</p>
               <% end %>
             </li>

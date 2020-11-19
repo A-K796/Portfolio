@@ -7,9 +7,11 @@
     <tbody>
       <% @movies.each do |movie| %>
       <tr>
-        <%= link_to movie.title, movie_path(movie) %>
+        <%= link_to movie_path(movie) do %>
+        <%= attachment_image_tag movie, :image, :fill, 60, 60, fallback: "no_image.jpg" %>
+        <%= movie.title %>
+        <% end %>
       </tr>
-      <tr><%= movie.body %></tr>
       <% end %>
     </tbody>
   </table>

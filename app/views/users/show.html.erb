@@ -4,16 +4,22 @@
   </div>
   <div>
   <!--自身の投稿した映画一覧-->
+    <h2>投稿した映画</h2>
     <table>
       <% @movies.each do |movie| %>
-      <tr>映画画像</tr>
-      <tr><%= movie.title %></tr>
+      <tr>
+        <td><%= attachment_image_tag movie, :image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
+        <td><%= link_to movie.title, movie_path(movie.id) %></td>
+        <td><%= link_to "編集", edit_movie_path(movie.id) %></td>
+        <td><%= link_to "削除", movie_path(movie.id), method: :delete %></td>
+      </tr>
       <% end %>
     </table>
 
   <!--映画投稿フォーム-->
+    <h2>新規投稿</h2>
     <%= form_with model:@movie, url:movies_path, local:true do |f| %>
-    映画画像
+    <%= f.attachment_field :image %>
     <h4>タイトル</h4>
     <%= f.text_field :title %>
     <h4>あらすじ</h4>
