@@ -1,6 +1,6 @@
 <body>
   <div>
-    ジャンル一覧
+    <%= render 'homes/genrebox', genres: @genres %>
   </div>
   <%= link_to "一覧へ", movies_path %>
   <table class="table">
