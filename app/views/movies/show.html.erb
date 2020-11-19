@@ -5,8 +5,26 @@
     <%= attachment_image_tag @movie, :image, :fill, 60, 60, fallback: "no_image.jpg" %>
     <%= @movie.title %>
     <%= @movie.body %>
+
+<!--いいね機能-->
+    <% if @movie.favorited_by?(current_user) %>
+    <li>
+      <%= link_to movie_likes_path(@movie), method: :delete do %>
+      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+      <%= @movie.likes.count %> いいね
+      <% end %>
+    </li>
+    <% else %>
+    <li>
+      <%= link_to movie_likes_path(@movie), method: :post do %>
+      <i class="fa fa-heart-o" aria-hidden="true"></i>
+      <%= @movie.likes.count %> いいね
+      <% end %>
+    </li>
+    <% end %>
   </div>
 
+<!--コメント投稿機能-->
   <div>
     <%= form_with model:[@movie, @comment], local:true do |f| %>
     <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "コメントをここに" %>

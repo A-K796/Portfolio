@@ -10,6 +10,12 @@
           <%= movie.title %>
           <%end%>
         </td>
+        <td>
+          <%= movie.likes.count %> いいね
+        </td>
+        <td>
+          コメント数: <%= movie.comments.count %>
+        </td>
       </tr>
       <% end %>
     </table>
