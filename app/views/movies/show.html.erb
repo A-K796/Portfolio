@@ -4,7 +4,7 @@
     <h1>詳細</h1>
     <%= attachment_image_tag @movie, :image, :fill, 60, 60, fallback: "no_image.jpg" %>
     <%= @movie.title %>
-    <%= @movie.genre.name %>
+    <%= @genre.name %>
     <%= @movie.body %>
 
 <!--いいね機能-->

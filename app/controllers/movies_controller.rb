@@ -1,10 +1,13 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
-    @movies = Movie.all
+    @movies = Movie.all.reverse_order
   end
 
   def show
     @movie = Movie.find(params[:id])
+    @genre = @movie.genre
     @comments = @movie.comments
     @comment = Comment.new
   end
@@ -12,7 +15,7 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
     @movie.save
-    redirect_to movies_path
+    redirect_to movies_path, notice: "新規投稿しました"
   end
 
   def edit
@@ -26,7 +29,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
 		@movie.update(movie_params)
 		if @movie.save
-			redirect_to movie_path(@movie.id)
+			redirect_to movie_path(@movie.id), notice: "編集しました"
 		else
 			render "edit"
 		end
@@ -35,7 +38,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
 		@movie.destroy
-		redirect_to request.referer
+		redirect_to request.referer, notice: "削除しました"
   end
 
   private

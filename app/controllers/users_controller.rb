@@ -1,14 +1,10 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+  
   def show
     @user = current_user
     @movie = Movie.new
     @movies = @user.movies
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   private

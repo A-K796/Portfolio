@@ -56,3 +56,6 @@ Genre.create!(
   
 Genre.create!(
   name: '戦争')
+
+Genre.create!(
+  name: 'その他')
