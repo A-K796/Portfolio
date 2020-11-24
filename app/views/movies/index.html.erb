@@ -1,23 +1,26 @@
-<body>
-  <div>
-    <h1>映画一覧</h1>
-    <table class="table">
-      <% @movies.each do |movie| %>
-      <tr>
-        <td>
-          <%= link_to movie_path(movie.id) do %>
-          <%= attachment_image_tag movie, :image, :fill, 60, 60, fallback: "no_image.jpg" %>
-          <%= movie.title %>
-          <%end%>
-        </td>
-        <td>
-          <%= movie.likes.count %> いいね
-        </td>
-        <td>
-          コメント数: <%= movie.comments.count %>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+<biv class="container">
+  <div class="row">
+    <div class="col-xs-10 col-md-offset-1">
+      <h1>映画一覧</h1>
+      <table class="table">
+        <% @movies.each do |movie| %>
+        <tr>
+          <td>
+            <%= link_to movie_path(movie.id) do %>
+            <%= attachment_image_tag movie, :image, size: "60x60", fallback: "no_image.jpg" %>
+            <%= movie.title %>
+            <%end%>
+          </td>
+          <td>
+            <%= movie.likes.count %> いいね
+          </td>
+          <td>
+            コメント数: <%= movie.comments.count %>
+          </td>
+        </tr>
+        <% end %>
+        <%= paginate @movies %>
+      </table>
+    </div>
   </div>
-</body>
+</biv>

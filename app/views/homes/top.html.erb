@@ -10,9 +10,9 @@
       </p>
 
 <!--映画一覧表示-->
-      <h3><%= link_to "一覧へ", movies_path %></h3>
       <div class="row">
-        <p>新しい投稿</p>
+        <h3>新しい投稿</h3>
+        <p class="text-right"><%= link_to "もっとみる", movies_path %></p>
         <% @movies.each do |movie| %>
         <div class="col-md-3">
           <%= link_to movie_path(movie) do %>
@@ -24,7 +24,7 @@
       </div>
 
       <div class="row">
-        <p>おすすめ映画</p>
+        <h3>おすすめ映画</h3>
         <% @all_ranks.each do |movie| %>
         <div class="col-md-3">
           <%= link_to movie_path(movie) do %>

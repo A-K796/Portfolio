@@ -1,8 +1,8 @@
 class MoviesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
-    @movies = Movie.all.reverse_order
+    @movies = Movie.page(params[:page]).per(5).reverse_order
   end
 
   def show

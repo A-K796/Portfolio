@@ -1,30 +1,44 @@
-  <div>
-    <%= @user.name %>
-  </div>
-  <div>
-  <!--自身の投稿した映画一覧-->
-    <h2>投稿した映画</h2>
-    <table>
-      <% @movies.each do |movie| %>
-      <tr>
-        <td><%= attachment_image_tag movie, :image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
-        <td><%= link_to movie.title, movie_path(movie.id) %></td>
-        <td><%= link_to "編集", edit_movie_path(movie.id) %></td>
-        <td><%= link_to "削除", movie_path(movie.id), method: :delete %></td>
-      </tr>
-      <% end %>
-    </table>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-3">
+        <%= @user.name %>
+        <!--映画投稿フォーム-->
+        <h2>新規投稿</h2>
+        <%= form_with model:@movie, url:movies_path, local:true do |f| %>
+        <%= f.attachment_field :image %>
+        <h4>タイトル</h4>
+        <%= f.text_field :title %>
+        <h4>ジャンル</h4>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %>
+        <h4>あらすじ</h4>
+        <%= f.text_area :body %>
+        <%= f.submit '投稿' %>
+        <% end %>
+      </div>
 
-  <!--映画投稿フォーム-->
-    <h2>新規投稿</h2>
-    <%= form_with model:@movie, url:movies_path, local:true do |f| %>
-    <%= f.attachment_field :image %>
-    <h4>タイトル</h4>
-    <%= f.text_field :title %>
-    <h4>ジャンル</h4>
-    <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %>
-    <h4>あらすじ</h4>
-    <%= f.text_area :body %>
-    <%= f.submit '投稿' %>
-    <% end %>
+      <div class="col-xs-9">
+        <h2>投稿した映画</h2>
+        <table class="table">
+          <thead>
+			      <tr>
+				      <th></th>
+			      	<th>タイトル</th>
+	            <th colspan="3"></th>
+			      </tr>
+		      </thead>
+
+		      <tbody>
+            <% @movies.each do |movie| %>
+            <tr>
+              <td><%= attachment_image_tag movie, :image, size: "60x60", fallback: "no_image.jpg" %></td>
+              <td><%= link_to movie.title, movie_path(movie.id) %></td>
+              <td><%= link_to "編集", edit_movie_path(movie.id) %></td>
+              <td><%= link_to "削除", movie_path(movie.id), method: :delete %></td>
+            </tr>
+            <% end %>
+            <%= paginate @movies %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>

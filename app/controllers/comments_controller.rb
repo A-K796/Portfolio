@@ -10,6 +10,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    Comment.find_by(id: params[:id], movie_id: params[:movie_id]).destroy
+		redirect_to request.referer, notice: "コメント削除しました"
   end
 
   private

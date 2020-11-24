@@ -1,9 +1,20 @@
-<body>
-  <h1>映画情報編集</h1>
-  <%= form_with model:@movie, url:movie_path(@movie), local:true do |f| %>
-  <%= f.attachment_field :image %>
-  <%= f.text_field :title %>
-  <%= f.text_field :body %>
-  <%= f.submit '更新' %>
-  <% end %>
-</body>
+<div class="container">
+  <div class="row">
+    <h1>映画情報編集</h1>
+    <%= form_with model:@movie, url:movie_path(@movie), local:true do |f| %>
+    <p>
+      <%= f.label :image, "映画画像" %>
+      <%= f.attachment_field :image %>
+    </p>
+    <p>
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.label :body, "あらすじ" %>
+      <%= f.text_field :body %>
+    </p>
+    <%= f.submit '更新' %>
+    <% end %>
+  </div>
+</div>
