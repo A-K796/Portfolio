@@ -41,8 +41,13 @@ class MoviesController < ApplicationController
 		redirect_to request.referer, notice: "削除しました"
   end
 
-  private
+  def search
+    selection = params[:keyword]
+    @movies = Movie.sort(selection)
+    # @movies = Movie.page(params[:page]).per(5).reverse_order
+  end
 
+  private
   def movie_params
     params[:movie][:user_id] = current_user.id
     params.require(:movie).permit(:title, :body, :user_id, :genre_id, :image)
