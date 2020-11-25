@@ -48,7 +48,16 @@ class MoviesController < ApplicationController
 
   def search
     selection = params[:keyword]
-    @movies = Movie.sort(selection)
+    case selection
+    when 'new'
+      @movies = Movie.page(params[:page]).order(created_at: :DESC).per(5)
+    when 'old'
+      @movies = Movie.page(params[:page]).order(created_at: :ASC).per(5)
+    when 'likes'
+      @movies = Movie.page(params[:page]).left_joins(:likes).group(:id).order(Arel.sql('COUNT(likes.id) DESC')).per(5)
+    when 'comment'
+      @movies = Movie.page(params[:page]).left_joins(:comments).group(:id).order(Arel.sql('count(comments.id) DESC')).per(5)
+    end
   end
 
   private
