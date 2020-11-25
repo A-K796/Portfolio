@@ -16,8 +16,8 @@ class Movie < ApplicationRecord
       return all.order(created_at: :ASC)
     when 'likes'
       return find(Like.group(:movie_id).order('count(movie_id) desc').pluck(:movie_id))
-    when 'dislikes'
-      return find(Favorite.group(:post_id).order('count(post_id) asc').pluck(:post_id))
+    when 'comment'
+      return find(Comment.group(:movie_id).order('count(movie_id) desc').pluck(:movie_id))
     end
   end
 

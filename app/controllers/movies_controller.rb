@@ -2,7 +2,12 @@ class MoviesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @movies = Movie.page(params[:page]).per(5).reverse_order
+    @genres = Genre.all
+    if params[:genre_id].present?
+      @movies = Movie.where(genre_id: params[:genre_id]).page(params[:page]).per(5).reverse_order
+    else
+      @movies = Movie.page(params[:page]).per(5).reverse_order
+    end
   end
 
   def show
@@ -44,7 +49,6 @@ class MoviesController < ApplicationController
   def search
     selection = params[:keyword]
     @movies = Movie.sort(selection)
-    # @movies = Movie.page(params[:page]).per(5).reverse_order
   end
 
   private

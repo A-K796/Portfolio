@@ -1,17 +1,19 @@
 <div class="container">
   <div class="row">
+    <!--%= render 'homes/genrebox', genres: @genres %-->
     <div class="col-xs-10 col-md-offset-1">
       <h1>映画一覧</h1>
 
+<!--ソート機能      -->
       <%= form_with model: @movie, url: search_path, method: :get, local: true do |form| %>
-  <%= form.select :keyword, [ ['投稿が新しい順', 'new'],
-                            ['投稿が古い順', 'old'],
-                            ['いいねが多い順', 'likes'],
-                            ['いいねが少ない順', 'dislikes'],
-                          ] %>
-  <%= form.submit %>
-  <% end %>
+      <%= form.select :keyword, [ ['投稿が新しい順', 'new'],
+                                  ['投稿が古い順', 'old'],
+                                  ['いいねが多い順', 'likes'],
+                                  ['コメントが多い順', 'comment'], ] %>
+      <%= form.submit %>
+      <% end %>
 
+<!--一覧表示-->
       <table class="table">
         <% @movies.each do |movie| %>
         <tr>

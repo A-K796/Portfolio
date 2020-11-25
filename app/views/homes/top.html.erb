@@ -2,15 +2,16 @@
   <div class="row">
 <!--ジャンル一覧-->
     <%= render 'homes/genrebox', genres: @genres %>
-    <div class="col-xs-9">
 
 <!--サイト説明-->
+    <div class="col-xs-9">
       <h2>
         ようこそ<strong>Movies</strong>へ！<br>
         このサイトはおすすめ映画の投稿サイトとなっています<br>
       </h2>
 
 <!--映画一覧表示-->
+<!--新着順-->
       <div class="row">
         <h3>新しい投稿</h3>
         <p class="text-right"><%= link_to "もっとみる", movies_path %></p>
@@ -24,6 +25,7 @@
         <% end %>
       </div>
 
+<!--いいね多い順-->
       <div class="row">
         <h3>おすすめ映画</h3>
         <% @all_ranks.each do |movie| %>
