@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    models:
+      movie: 映画
+    attributes:
+      movie:
+        title: タイトル
+        body: あらすじ
+        genre: ジャンル
+    models:
+      comment: コメント
+    attributes:
+      movie:
+        title: コメント
+        body: コメント

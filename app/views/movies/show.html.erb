@@ -36,6 +36,7 @@
 
 <!--コメント投稿機能-->
   <div>
+    <%= render 'layouts/error',model:@comment %>
     <%= form_with model:[@movie, @comment], local:true do |f| %>
     <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
     <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
@@ -45,7 +46,6 @@
 <!--コメント一覧-->
   <div>
     <h1>コメント一覧</h1>
-    <%= render 'layouts/error',model:@comment %>
     <table class="table">
       <thead>
         <tr>
