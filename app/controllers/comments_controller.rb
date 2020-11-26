@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.movie_id = @movie.id
     if @comment.save
-      redirect_to movie_path(movie), notice: "コメント投稿しました"
+      redirect_to movie_path(@movie), notice: "コメント投稿しました"
     else
       @comments = @movie.comments
       @genre = @movie.genre
