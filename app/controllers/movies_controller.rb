@@ -19,8 +19,14 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
-    @movie.save
-    redirect_to movies_path, notice: "新規投稿しました"
+    if @movie.save
+      redirect_to movies_path, notice: "新規投稿しました"
+    else
+      @user = current_user
+      @movies = @user.movies.page(params[:page]).per(4).reverse_order
+      @comment = @user.comments.page(params[:page]).per(4).reverse_order
+      render template: "users/show"
+    end
   end
 
   def edit
@@ -47,6 +53,7 @@ class MoviesController < ApplicationController
   end
 
   def search
+    @genres = Genre.all
     selection = params[:keyword]
     case selection
     when 'new'

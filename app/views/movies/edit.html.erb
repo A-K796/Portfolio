@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <h1>映画情報編集</h1>
+    <%= render 'layouts/error',model:@movie %>
     <%= form_with model:@movie, url:movie_path(@movie), local:true do |f| %>
     <p>
       <%= f.label :image, "映画画像" %>
