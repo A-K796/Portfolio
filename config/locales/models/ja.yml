@@ -2,14 +2,11 @@ ja:
   activerecord:
     models:
       movie: 映画
+      comment: コメント
     attributes:
       movie:
         title: タイトル
         body: あらすじ
         genre: ジャンル
-    models:
-      comment: コメント
-    attributes:
-      movie:
-        title: コメント
+      comment:
         body: コメント
